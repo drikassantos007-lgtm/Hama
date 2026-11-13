@@ -48,7 +48,7 @@ $('add').onclick=async()=>{const who=$('who').value.trim(),date=$('date').value;
  if(!who||!date){alert('Preencha de quem é e a data de entrega.');return}
  const b=$('add');b.disabled=true;
  try{await addDoc(col,{who,date,note:$('note').value.trim(),img,paid:false,done:false,criado:Date.now()});
-  img='';$('who').value='';$('date').value='';$('note').value='';$('file').value='';$('drop').innerHTML='📷 Toque para escolher a foto'}
+  img='';$('who').value='';$('date').value='';$('note').value='';$('file').value='';$('drop').innerHTML='Toque para escolher a foto'}
  catch(e){alert('Não consegui salvar ('+e.code+'). Confira se está logada e se as regras foram publicadas.')}
  b.disabled=false};
 $('list').onclick=async e=>{const b=e.target.closest('button');if(!b)return;const o=orders.find(x=>x.id==b.dataset.id);if(!o)return;
@@ -73,11 +73,11 @@ function render(){
  if(q)l=l.filter(o=>(o.who+' '+o.note).toLowerCase().includes(q));
  $('list').innerHTML=l.length?l.map(o=>{const w=when(o.date);
   return '<div class="box card '+(o.paid?'paid ':'')+(o.done?'done':'')+'"><div class="pic">'+(o.img?'<img src="'+o.img+'" alt="Encomenda de '+esc(o.who)+'">':'<span style="font-size:2.4rem">🎀</span>')+'</div>'+
-  '<div class="info"><h3>'+esc(o.who)+'</h3><span class="badge'+(w[1]&&!o.done?' late':'')+'">📅 '+fmt(o.date)+(o.done?' · entregue ✔':' · '+w[0])+'</span>'+
+  '<div class="info"><h3>'+esc(o.who)+'</h3><span class="badge'+(w[1]&&!o.done?' late':'')+'">📆'+fmt(o.date)+(o.done?' · entregue ✔':' · '+w[0])+'</span>'+
   (o.note?'<div class="note">'+esc(o.note)+'</div>':'')+
   '<div class="acts"><button class="btn sm pay '+(o.paid?'ok':'')+'" data-a="pay" data-id="'+o.id+'">'+(o.paid?'✔ Pago':'Não pago')+'</button>'+
-  '<button class="btn sm ghost" data-a="done" data-id="'+o.id+'">'+(o.done?'Desfazer':'📦 Entregue')+'</button>'+
-  '<button class="btn sm ghost" data-a="del" data-id="'+o.id+'" aria-label="Apagar">🗑</button></div></div></div>'}).join(''):'<div class="empty">Nenhuma encomenda por aqui ainda ✨</div>';
+  '<button class="btn sm ghost" data-a="done" data-id="'+o.id+'">'+(o.done?'Desfazer':'Entregue')+'</button>'+
+  '<button class="btn sm ghost" data-a="del" data-id="'+o.id+'" aria-label="Apagar">🗑</button></div></div></div>'}).join(''):'<div class="empty">Nenhuma encomenda por aqui ainda</div>';
 }
 
 onAuthStateChanged(auth,u=>{
