@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Hama Pixo · Encomendas</title>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#f23f9b">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Hama Pixo">
+</head>
+<body>
+<div id="login" hidden><div class="box lbox"><div id="lg"></div><h2>Hama Pixo</h2><p>Entre para ver suas encomendas</p>
+<label>E-mail<input type="text" id="em" autocomplete="username"></label>
+<label>Senha<input type="password" id="pw" autocomplete="current-password"></label>
+<p class="err" id="err"></p><button class="btn" id="loginBtn">Entrar</button></div></div>
+<div id="app" hidden>
+<header class="top">
+  <div class="logo"><span id="logo"></span>Hama Pixo</div>
+  <nav><button class="lnk" data-go="nova">Nova encomenda</button><button class="lnk" data-go="lista">Encomendas</button></nav>
+  <div style="display:flex;gap:8px"><button class="btn" data-go="nova">+ Nova</button><button class="btn ghost" id="out">Sair</button></div>
+</header>
+
+<section class="hero">
+  <h1>Pequenos pixels.<br>Grandes encomendas.</h1>
+  <p>Seu caderninho de hama beads: quem pediu, quando entregar e se já foi pago. É só olhar e pronto.</p>
+  <div class="stage">
+    <div class="gr" id="gr"></div>
+    <div class="tree" id="t1" style="left:1%"></div>
+    <div class="tree" id="t2" style="left:14%;--w:60px"></div>
+    <div class="tree" id="t3" style="right:2%"></div>
+    <div class="tree" id="t4" style="right:15%;--w:56px"></div>
+    <div class="fl" id="h1" style="left:14%;top:70px"></div>
+    <div class="fl" id="s1" style="right:17%;top:60px"></div>
+    <div class="fl" id="s2" style="left:30%;top:130px"></div>
+    <div class="fl" id="h2" style="right:30%;top:150px"></div>
+    <div class="sh"></div>
+    <div class="mid" id="mid"></div>
+    <div class="bub" id="bub"></div>
+  </div>
+  <div class="search"><span id="spk"></span><input id="q" type="text" placeholder="Buscar encomenda por nome..." aria-label="Buscar"><button class="go" data-go="lista" aria-label="Ver encomendas">→</button></div>
+</section>
+
+<div class="edge" id="edge"></div>
+<main class="pink">
+<div class="in">
+  <p class="lab">FEITO PARA ENCOMENDAS</p>
+  <div class="stats">
+    <div class="box stat"><span id="i1"></span><div><b>A entregar</b><span id="sTotal">0 encomendas</span></div></div>
+    <div class="box stat"><span id="i2"></span><div><b>Sem pagamento</b><span id="sUnpaid">0 encomendas</span></div></div>
+    <div class="box stat"><span id="i3"></span><div><b>Próxima entrega</b><span id="sNext">–</span></div></div>
+  </div>
+
+  <div class="box panel" id="nova">
+    <h2>Nova encomenda</h2>
+    <div class="drop" id="drop">📷 Toque para escolher a foto</div>
+    <input type="file" id="file" accept="image/*" hidden>
+    <div class="row">
+      <label>De quem é<input type="text" id="who" placeholder="Ex.: Yanica"></label>
+      <label>Entregar até<input type="date" id="date"></label>
+    </div>
+    <label>Observações (opcional)<textarea id="note" placeholder="Valor, cores, tamanho..."></textarea></label>
+    <button class="btn" id="add">+ Adicionar encomenda</button>
+  </div>
+
+  <div class="sec" id="lista">
+    <h2>Minhas encomendas</h2>
+    <div class="tabs" id="tabs">
+      <button class="btn sm on" data-f="all">Todas</button>
+      <button class="btn sm" data-f="unpaid">A pagar</button>
+      <button class="btn sm" data-f="paid">Pagas</button>
+      <button class="btn sm" data-f="done">Entregues</button>
+    </div>
+    <div class="list" id="list"></div>
+  </div>
+</div>
+</main>
+
+</div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
